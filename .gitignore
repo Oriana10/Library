@@ -40,3 +40,5 @@ mvnw.cmd
 ### Settings ###
 .settings/
 .project
+README.md
+javadoc/
