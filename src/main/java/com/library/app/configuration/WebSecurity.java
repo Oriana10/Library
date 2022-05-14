@@ -13,12 +13,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableAutoConfiguration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
-public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
+public class WebSecurity  extends WebSecurityConfigurerAdapter {
 		
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
+		http.authorizeRequests()
 				.antMatchers("/css/*", "/js/*", "/img/*", "/**").permitAll()
 				.and().csrf().disable();
 	}

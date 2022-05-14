@@ -18,7 +18,7 @@ class LibraryApplicationTests {
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-
+/*
 	@Test
 	public void createUser() {
 		User user = new User();
@@ -29,5 +29,5 @@ class LibraryApplicationTests {
 	
 		assertTrue(returnedUser.getPassword().equals(user.getPassword()));
 	}
-
+*/
 }
