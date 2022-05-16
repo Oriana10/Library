@@ -18,8 +18,14 @@ Web application created to store and consult books.
 <br>https://www.baeldung.com/spring-security-authentication-provider
 - Spring Boot Validation - Baeldung
 <br>https://www.baeldung.com/spring-boot-bean-validation
-- Spring Boot Full Counrse - AmigosCode
+- Spring Boot Full Course - AmigosCode
 <br>https://www.youtube.com/watch?v=her_7pa0vrg
+- Spring Security Roles ENUM
+<br>https://somospnt.com/blog/162-maneja-tus-usuarios-y-sus-roles-con-spring-security
+- Spring Security Roles y Privileges - Baeldung
+<br>https://www.baeldung.com/role-and-privilege-for-spring-security-registration
+- Spring Security Roles
+<br>https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
 <br><br>- AuthenticationManagerBuilder
 
 ##### Security
