@@ -1,16 +1,23 @@
-package com.library.app.model;
+package com.library.app.persistence.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.JoinColumn;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty; // spring boot validation
 
 //import org.hibernate.validator.constraints.NotEmpty; deprecated
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
@@ -21,20 +28,27 @@ public class User implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotEmpty(message = "El nombre no puede ser nulo o estar vacio")
-	@NotBlank(message = "El nombre no puede ser whitespace")
+
+	@NotEmpty(message = "The name cannot be null or empty")
+	@NotBlank(message = "The name cannot be whitespace")
 	private String username;
-	
+
 	private String password;
-	
-	
+
+	@Email(message = "Enter the correct email address")
+	private String email;
+
+	@ManyToMany
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private Collection<Role> roles;
+
 	/*--------- UserDetails Methods --------*/
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// return List.of(new SimpleGrantedAuthority("ROLE_SENSEI"));
-		return null;
+		List<GrantedAuthority> permissions = new ArrayList();
+		permissions.add(new SimpleGrantedAuthority(roles.toString()));
+		return permissions;
 	}
 
 	@Override
@@ -67,22 +81,24 @@ public class User implements UserDetails {
 		return true;
 	}
 
-	
 	/*--------- Constructors --------*/
-	
+
 	public User() {
 		super();
 	}
-	
+
 	public User(Long id,
 			@NotEmpty(message = "El nombre no puede ser nulo o estar vacio") @NotBlank(message = "El nombre no puede ser whitespace") String username,
-			String password) {
+			String password, @Email(message = "Ingrese el correo electrónico correcto") String email,
+			Collection<Role> roles) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.email = email;
+		this.roles = roles;
 	}
-	
+
 	/*--------- Getters, Setters --------*/
 
 	public Long getId() {
@@ -91,6 +107,22 @@ public class User implements UserDetails {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
 	}
 
 	public static long getSerialversionuid() {
