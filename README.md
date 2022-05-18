@@ -2,8 +2,9 @@
 Web application created to store and consult books.
 
 #### References
-- General Official Theory
-<br>https://spring.io/guides/topicals/spring-security-architecture
+- General Theory
+<br>Official https://spring.io/guides/topicals/spring-security-architecture
+<br>https://www.juntadeandalucia.es/servicios/madeja/contenido/recurso/210
 - Web Configuration Introduction 
 <br>- Baeldung https://www.baeldung.com/java-config-spring-security
 <br>- Programador Clic https://programmerclick.com/article/2508607086/
